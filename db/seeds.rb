@@ -27,7 +27,7 @@ end
 10.times do
   User.create!(
     email: Faker::Internet.unique.email(domain: 'yopmail.com'),
-    password: Faker::Internet.password(min_length: 6),
+    password: Faker::Internet.password(min_length: 6, max_length: 20),
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
   )
@@ -52,9 +52,9 @@ kitten_pixes = [
 
 10.times do |i|
   Item.create!(
-    title: Faker::Creature::Cat.unique.name,
-    description: Faker::Lorem,
-    price: Faker::Number.decimal(l_digits: 2),
+    title: Faker::Creature::Cat.name,
+    description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
+    price: Faker::Number.positive(from: 1.00, to: 5000.00),
     image_url: kitten_pixes[i],
   )
 end
