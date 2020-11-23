@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'faker'
+gem 'activerecord-reset-pk-sequence'
+
 gem 'table_print'
 gem 'devise'
 gem 'stripe'
