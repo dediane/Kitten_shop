@@ -5,7 +5,7 @@ class Item < ApplicationRecord
 
   validates :title,
     presence: true,
-    length: {in: 5..140, message: "Title lenght must be between 5 and 140" }
+    length: {in: 3..140, message: "Title lenght must be between 3 and 140" }
   validates :description,
     presence: true,
     length: {in: 10..1000, message: "Description lenght must be between 10 and 1000" }
