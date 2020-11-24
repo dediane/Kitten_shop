@@ -1,9 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @cart.user %>
+  <strong>votre panier contient:</strong>
+  <%= @line_item.each do |line| %>
+     <%= line.item.title %> 
+     <%= line.item.price %> 
+  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<%
+=begin%>
+ <%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %> 
+<%
+=end%>
