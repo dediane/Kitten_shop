@@ -32,7 +32,7 @@ end
     last_name: Faker::Name.last_name,
   )
 end
-puts '10 users created'
+puts "#{User.count}/10 users created"
 
 
 ########## - ITEMS - ##########
@@ -62,13 +62,14 @@ kitten_pixes = [
 
 20.times do |i|
   Item.create!(
-    title: Faker::Creature::Cat.name,
-    description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
-    price: Faker::Number.positive(from: 1.00, to: 5000.00),
+    title: Faker::Creature::Cat.unique.name,
+    description: Faker::Lorem.paragraph(sentence_count: 4),
+    price: Faker::Number.positive(from: 1.00, to: 5000.00).round(2),
     image_url: kitten_pixes[i],
   )
 end
-puts '20 items created'
+puts "#{Item.count}/20 items created"
+
 
 
 
