@@ -4734,10 +4734,8 @@
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
-    align-items: center;
-    align-content: space-around;
   }
   
   .card > hr {
@@ -4771,7 +4769,7 @@
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     min-height: 1px;
-    padding: 1.00rem;
+    padding: 1.25rem;
   }
   
   .card-title {
@@ -4785,7 +4783,6 @@
   
   .card-text:last-child {
     margin-bottom: 0;
-    height: 60px;
   }
   
   .card-link:hover {
@@ -4799,9 +4796,8 @@
   .card-header {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.03);
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-    text-align: center;
   }
   
   .card-header:first-child {
@@ -4862,10 +4858,6 @@
   
   .card-deck .card {
     margin-bottom: 15px;
-  }
-  
-  .card-price {
-      font-size: 20px;
   }
   
   @media (min-width: 576px) {
@@ -6955,7 +6947,6 @@
   
   .d-block {
     display: block !important;
-    
   }
   
   .d-table {
@@ -10524,11 +10515,3 @@
   .list-group {
     font-size: 0.930125rem;
   }
-
-  .symbol {
-      font-size: 11px;
-  }
-
- .fronter {
-     color: #D8D8D8;
- }

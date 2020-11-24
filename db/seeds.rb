@@ -62,11 +62,9 @@ kitten_pixes = [
 
 20.times do |i|
   Item.create!(
-
-    title: Faker::Creature::Cat.name,
-    description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
-    price: Faker::Number.decimal(l_digits: 2),
-
+    title: Faker::Creature::Cat.unique.name,
+    description: Faker::Lorem.paragraph(sentence_count: 4),
+    price: Faker::Number.positive(from: 1.00, to: 5000.00).round(2),
     image_url: kitten_pixes[i],
   )
 end
