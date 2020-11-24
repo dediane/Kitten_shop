@@ -11,6 +11,6 @@ class Item < ApplicationRecord
     length: {in: 10..1000, message: "Description lenght must be between 10 and 1000" }
   validates :price,
     presence: true,
-    numericality: {greater_than_or_equal_to: 1, message: "Price must be positive"}
+    numericality: {greater_than: 0, message: "Price must be positive"}
 
 end
