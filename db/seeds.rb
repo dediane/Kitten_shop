@@ -38,19 +38,29 @@ puts '10 users created'
 ########## - ITEMS - ##########
 
 kitten_pixes = [
-  'https://www.pexels.com/fr-fr/photo/mur-animal-animal-de-compagnie-mignon-4790617/',
-  'https://www.pexels.com/fr-fr/photo/adorable-amusant-animal-animal-de-compagnie-1543793/',
+  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-animal-domestique-2558605/',
   'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-arbre-257532/',
-  'https://www.pexels.com/fr-fr/photo/a-l-interieur-adorable-animal-animal-de-compagnie-208773/',
   'https://www.pexels.com/fr-fr/photo/a-fourrure-a-poils-adorable-animal-290164/',
   'https://www.pexels.com/fr-fr/photo/a-l-interieur-adorable-animal-animal-de-compagnie-596590/',
-  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-chat-156934/',
-  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-cailloux-357141/',
   'https://www.pexels.com/fr-fr/photo/adorable-amusant-animal-animal-de-compagnie-141496/',
-  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-blanc-171227/'
+  'https://www.pexels.com/fr-fr/photo/adorable-animal-de-compagnie-chat-chaton-1870376/',
+  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-blanc-171227/',
+  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-chat-2061057/',
+  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-anxieux-669015/',
+  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-animal-domestique-2643812/',
+  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-animal-domestique-2181171/',
+  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-animal-domestique-2581153/',
+  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-bebe-1120049/',
+  'https://www.pexels.com/fr-fr/photo/a-fourrure-a-poils-adorable-animal-209800/',
+  'https://www.pexels.com/fr-fr/photo/animal-animal-de-compagnie-chat-chat-domestique-1275451/',
+  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-bebe-731553/',
+  'https://www.pexels.com/fr-fr/photo/animal-chaton-dormir-felin-416160/',
+  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-animal-domestique-2194261/',
+  'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-animal-domestique-735423/',
+  'https://www.pexels.com/fr-fr/photo/amusant-animal-animal-de-compagnie-bailler-56857/'
 ]
 
-10.times do |i|
+20.times do |i|
   Item.create!(
     title: Faker::Creature::Cat.name,
     description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
@@ -58,7 +68,7 @@ kitten_pixes = [
     image_url: kitten_pixes[i],
   )
 end
-puts '10 items created'
+puts '20 items created'
 
 
 
