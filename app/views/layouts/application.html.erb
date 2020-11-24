@@ -18,6 +18,45 @@
   </head>
 
   <body>
+
+  <!-- BEGINNING NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+      <i class="fas fa-cat fa-3x pr-4" style="color:white"></i>
+      <%=link_to "Kitten Shop", root_path, :class =>"navbar-brand"%>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <!-- RIGHT PART -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%= link_to "Accueil", root_path, :class => "nav-link"%>
+              <span class="sr-only">(current)</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">À propos</a> 
+          </li>
+        </ul>
+        <!-- LEFT PART -->
+          <ul class="navbar-nav ml-auto pt-2 pr-4">
+            <div>
+              <i class="fas fa-shopping-cart fa-2x pr-4" style="color:white"></i>
+              <p><small style="color:white">Panier</small></p>
+            </div>
+            <li class="nav-item dropdown pt-2">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Connexion</a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <%= link_to "Se connecter", new_user_session_path, :class => "dropdown-item"%>
+                <div class="dropdown-divider"></div>
+                <%= link_to "Créer un compte", new_user_registration_path, :class => "dropdown-item"%>
+              </div>
+            </li>
+          </ul>
+      </div>
+    </nav>
+    <!--END OF NAVBAR PART -->
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
