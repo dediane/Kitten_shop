@@ -40,6 +40,15 @@
         </ul>
         <!-- LEFT PART -->
         <ul class="mr-4 navbar-nav">
+
+          <!-- LINK TO CART (NEED SOME FRONT REWORK) -->
+          <div class="mt-3 mr-4">
+            <% if user_signed_in? %>
+              <%= link_to "Voir Panier", user_cart_path(id: Cart.where(user_id: current_user.id).last, user_id:current_user.id)%>
+            <% end %>
+          </div>
+          <!-- LINK TO CART (NEED SOME FRONT REWORK) -->
+
           <div class="mt-3 mr-4">
           <i class="fas fa-shopping-cart fa-2x " style="color:white"></i>
           <p><small style="color:white">Panier</small></p>
