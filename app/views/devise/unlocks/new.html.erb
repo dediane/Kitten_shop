@@ -1,16 +1,30 @@
-<h2>Resend unlock instructions</h2>
+<div class="card bg-light mx-auto" style="width: 500px;">
+  <article class="card-body mx-auto" style="max-width: 450px;">
+	  <h2 class="card-title mt-3 text-center">Compte bloqué ?</h2>
+    <hr>
+    <!-- FORM -->
+    <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
 
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <!-- CONFIRMATION MESSAGES, ALERT MESSAGES AND WARNING MESSAGES -->
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <!-- EMAIL -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-at"></i> </span>
+        </div>
+        <%= f.email_field :email, autofocus: true, class:"form-control", placeholder: "Adresse email", autocomplete: "email" %>
+      </div> <!-- form-group// --> 
 
-  <div class="actions">
-    <%= f.submit "Resend unlock instructions" %>
-  </div>
-<% end %>
+      <!-- MESSAGE EXPLICATIF -->
+      <i class="d-flex justify-content-center">Envoi un email avec les instructions de déblocage.</i>
+      <!-- VALIDATION BUTTON -->
+      <div class="actions">
+        <%= f.submit "Débloquer mon compte", class: "btn btn-primary btn-block" %>
+      </div>
 
-<%= render "devise/shared/links" %>
+      <!-- OTHER LINKS -->
+      <%= render "devise/shared/links" %>
+    <% end %>
+  </article>
+</div> <!-- card.// -->

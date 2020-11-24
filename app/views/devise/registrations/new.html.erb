@@ -1,29 +1,57 @@
-<h2>Sign up</h2>
+<div class="card bg-light mx-auto" style="width: 500px;">
+  <article class="card-body mx-auto" style="max-width: 450px;">
+	  <h2 class="card-title mt-3 text-center">Créer mon compte</h2>
+    <hr>
+    <!-- FORM -->
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      
+      <!-- CONFIRMATION MESSAGES, ALERT MESSAGES AND WARNING MESSAGES -->
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <!-- EMAIL -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-at"></i> </span>
+        </div>
+        <%= f.email_field :email, autofocus: true, class:"form-control", placeholder: "Adresse email", autocomplete: "email" %>
+      </div> <!-- form-group// -->
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <!-- PASSWORD -->
+      <% if @minimum_password_length %>
+        <i class="d-flex justify-content-center">(<%= @minimum_password_length %> characters minimum)</i>
+      <% end %>
+      <div class="form-group input-group">
+    	  <div class="input-group-prepend">
+		      <span class="input-group-text"> <i class="fas fa-lock"></i> </span>
+		    </div>
+        <%= f.password_field :password, class:"form-control", placeholder: "Mot de passe", autocomplete: "new-password" %>
+      </div> <!-- form-group// -->
+      
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+      <!-- PASSWORD CONFIRMATION -->
+      <div class="form-group input-group">
+    	  <div class="input-group-prepend">
+		      <span class="input-group-text"> <i class="fas fa-lock"></i> </span>
+		    </div>
+        <%= f.password_field :password_confirmation, class:"form-control", placeholder: "Confirmation du mot de passe", autocomplete: "new-password" %>
+      </div> <!-- form-group// -->     
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+      <!-- REMEMBER ME -->
+      <% if devise_mapping.rememberable? %>
+        <div class="form-group d-flex justify-content-center">
+          <%= f.check_box :remember_me %> <br>
+          <%= f.label :remember_me, "Se souvenir de moi", class:"ml-2" %>
+        </div>
+      <% end %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+      <!-- VALIDATION BUTTON -->
+      <div class="actions">
+        <%= f.submit "Créer", class: "btn btn-primary btn-block" %>
+      </div>
 
-<%= render "devise/shared/links" %>
+      <!-- OTHER LINKS -->
+      <%= render "devise/shared/links" %>
+    <% end %>
+  </article>
+</div> <!-- card.// -->
+
