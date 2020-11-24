@@ -1,2 +1,47 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="card bg-light mx-auto" style="width: 500px;">
+  <article class="card-body mx-auto" style="max-width: 450px;">
+    <h1 class="card-title text-center"><i class="fas fa-user-circle"></i></h1>
+    <h2 class="card-title text-center">Mon profil</h2>
+    <hr class="mb-4">
+
+    <!-- MANAGE PROFIL LINK -->
+    <h4 class="card-title mt-3 text-center">Gérer mon profil</h4>
+    <hr>
+    <%= link_to 'Modifier/suprimer mon profil', edit_user_registration_path(), class:"actions btn btn-primary btn-block" %>
+
+    <!-- ORDER HISTORY -->
+    <h4 class="card-title mt-5 text-center">Mes commandes</h4>
+    <hr>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+
+  </article>
+</div> <!-- card.// -->

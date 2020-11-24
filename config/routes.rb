@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root to: "items#index"
 
   # USERS AND PROFILE PAGES
-  resources :users, only: [:show]
   devise_for :users
+  resources :users, only: [:show]
 
   # ITEMS PAGES
   resources :items
