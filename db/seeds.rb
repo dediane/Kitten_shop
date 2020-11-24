@@ -70,7 +70,35 @@ kitten_pixes = [
 end
 puts "#{Item.count}/20 items created"
 
+########## - CARTS - ##########
 
+5.times do |i|
+  Cart.create!(
+    user_id:  i + 1,
+  )
+end
+puts "#{Cart.count}/5 carts created"
 
+######### - ORDERS - ##########
 
+5.times do |i|
+  Order.create!(
+    user_id:  i + 1,
+  )
+end
+puts "#{Order.count}/5 orders created"
+
+######### - LINE ITEMS - ##########
+
+5.times do |i|
+  3.times do
+    puts i
+    LineItem.create!(
+      cart_id: i + 1,
+      order_id: i + 1,
+      item_id: rand(1..10),
+    )
+  end
+end
+puts "#{LineItem.count}/ 15 line_items created"
 
