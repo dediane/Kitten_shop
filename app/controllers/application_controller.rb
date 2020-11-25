@@ -2,6 +2,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_devise_parameters, if: :devise_controller?
+  
+  include ApplicationHelper
+    after_action :create_cart_and_assign_to_current_user, only: [:create]
 
   protected
 

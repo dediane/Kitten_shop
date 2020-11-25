@@ -1,9 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @order.user %>
+  <strong>Bravo:</strong>
+  <%= @user.first_name %>
+</p>
+  Vous avez acheté :
+  <% @line_item.each do |line| %>
+    <h6><%= line.item.title %></h6>
+    <h6><%= line.item.description %></h6>
+  <% end %>
+</p>
+<p>
+  <strong>Nous vous confirmons le payement de:</strong>
+  <h6><%= @total %> €</h6>
+
 </p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+

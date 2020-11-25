@@ -1,46 +1,51 @@
 <p id="notice"><%= notice %></p>
 
-<p>
 
 <!-- Affichage du panier -->
-  <strong>votre panier contient:</strong>
-  <% @line_item.each do |line| %>
-    <h6><%= line.item.title %></h6>
-    <h6><%= line.item.description %></h6>
-    <h6><%= line.item.price %> €</h6>
-    <%= link_to 'Supprimer du panier', line_item_path(line.id), method: :delete, class: "btn btn-outline-danger"%>
-  <% end %>
-</p>
-<p>
-  <strong>votre total est:</strong>
-  <h6><%= @total %> €</h6>
-
-</p>
-
-
-<!-- Payement avec stripe -->
-<%= form_tag user_cart_charges_path(user_id: current_user.id, cart_id: params[:id]) do %>
-  <article>
-    <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
-      </div>
+<div class="col-8 m-auto">
+  <h4>Votre panier contient:</h4><br><br>
+  <table class="table">
+    <tr class="table-primary">
+      <th scope="row">Article</th>
+      <td>Description</td>
+      <td>Prix</td>
+      <td>Supprimer</td>
+    </tr>
+    <% @line_item.each do |line| %>
+    <tr class="table">
+      <th scope="row"><%= line.item.title %></th>
+      <td><%= line.item.description %></td>
+      <td><%= line.item.price %>€</td>
+      <td><%= link_to 'Supprimer', line_item_path(line.id), method: :delete, class: "btn btn-outline-danger"%></td>
+    </tr>
     <% end %>
-    <label class="amount">
-      <span>Total: <%= @total %> €</span>
-    </label>
-  </article>
+    <tr class="table-light">
+      <th scope="row">TOTAL: </th>
+      <td><%= @total %>€</td>
+      
+      <!-- Payement avec stripe -->
+      <%= form_tag user_cart_charges_path(user_id: current_user.id, cart_id: params[:id], total: @totalStripe, line_item: @line_item) do %>
+        <article>
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+        </article>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-label="Payer avec la carte"
-          data-description="Payer"
-          data-currency="EUR"
-          data-amount=<%= @totalStripe %>
-          data-locale="fr"></script>
-        
-<% end %>
-
+        <td colspan="2">
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-label="Payer par carte bancaire"
+                data-description="Payer"
+                data-currency="EUR"
+                data-amount=<%= @totalStripe %>
+                data-locale="fr"></script>       
+        </td>
+      <% end %>
+    </tr>
+  </table>
+</div>
 <%
 =begin%>
  <%= link_to 'Edit', edit_cart_path(@cart) %> |
