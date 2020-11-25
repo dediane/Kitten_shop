@@ -1,73 +1,86 @@
+<div class="card bg-light mx-auto" style="width: 500px;">
+  <article class="card-body mx-auto" style="max-width: 450px;">
+	  <h2 class="card-title mt-3 text-center">Modifier mon profil</h2>
+    <hr>
+    <!-- FORM -->
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      
+      <!-- CONFIRMATION MESSAGES, ALERT MESSAGES AND WARNING MESSAGES -->
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-<div class="container">
-  <h2 class="text-center">Edit <%= resource_name.to_s.humanize %></h2>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-
-    <div class="row justify-content-md-center">
-        <div class="field">
-          <%= f.label :first_name, class: "h5"  %><br />
-          <%= f.text_field :first_name, autofocus: true, autocomplete: "First name", class:"form-control form-control-lg" %>
+      <!-- FIRST NAME -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-user"></i> </span>
         </div>
-    </div>
+        <%= f.text_field :first_name, autofocus: true, class:"form-control", placeholder: "Prénom", autocomplete: "first-name" %>
+      </div> <!-- form-group// -->
 
-    <div class="row justify-content-md-center">
-        <div class="field">
-          <%= f.label :last_name, class: "h5" %><br />
-          <%= f.text_field :last_name, autofocus: true, autocomplete: "Last name", class:"form-control form-control-lg" %>
+      <!-- LAST NAME -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-users"></i> </span>
         </div>
-    </div>
+        <%= f.text_field :last_name, autofocus: true, class:"form-control", placeholder: "Nom de famille", autocomplete: "last-name" %>
+      </div> <!-- form-group// -->
 
-    <div class="row justify-content-md-center">
-        <div class="field">
-          <%= f.label :email, class: "h5"  %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control form-control-lg" %>
-        </div>
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <!-- EMAIL -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-at"></i> </span>
+        </div>  
+        <%= f.email_field :email, autofocus: true, class:"form-control", placeholder: "Adresse email", autocomplete: "email" %>
+      </div> <!-- form-group// -->
+
+      <!-- PASSWORD -->
+      <% if @minimum_password_length %>
+        <i class="d-flex justify-content-center">(<%= @minimum_password_length %> caractères minimum)</i>
       <% end %>
-    </div>
+      <i>(laisse vide si tu ne souhaites pas le modifier)</i>
+      <div class="form-group input-group">
+    	  <div class="input-group-prepend">
+		      <span class="input-group-text"> <i class="fas fa-lock"></i> </span>
+		    </div>
+        <%= f.password_field :password, class:"form-control", placeholder: "Nouveau mot de passe", autocomplete: "new-password" %>
+      </div> <!-- form-group// -->
+      
+      <!-- PASSWORD CONFIRMATION -->
+      <i>(laisse vide si tu ne souhaites pas le modifier)</i>
+      <div class="form-group input-group">
+    	  <div class="input-group-prepend">
+		      <span class="input-group-text"> <i class="fas fa-lock"></i> </span>
+		    </div>
+        <%= f.password_field :password_confirmation, class:"form-control", placeholder: "Nouveau mot de passe (confirmation)", autocomplete: "new-password" %>
+      </div> <!-- form-group// -->    
 
-    <div class="row justify-content-md-center">
-      <div class="field">
-        <%= f.label :password, class: "h5"  %> <i>(leave blank if you don't want to change it)</i><br />
-        <%= f.password_field :password, autocomplete: "new-password", class:"form-control form-control-lg" %>
-        <% if @minimum_password_length %>
-          <br />
-          <em><%= @minimum_password_length %> characters minimum</em>
-        <% end %>
-      </div>
-    </div>
+      <!-- CURRENT PASSWORD -->
+      <i>(uniquement si tu modifies le mot de passe)</i>
+      <div class="form-group input-group">
+    	  <div class="input-group-prepend">
+		      <span class="input-group-text"> <i class="fas fa-lock"></i> </span>
+		    </div>
+        <%= f.password_field :current_password, class:"form-control", placeholder: "Ancien mot de passe", autocomplete: "current-password" %>
+      </div> <!-- form-group// --> 
 
-    <div class="row justify-content-md-center">
-      <div class="field">
-        <%= f.label :password_confirmation, class: "h5"  %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control form-control-lg" %>
-      </div>
-    </div>
-
-    <div class="row justify-content-md-center">
-      <div class="field">
-        <%= f.label :current_password, class: "h5"  %><br />
-        <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control form-control-lg" %>
-      </div>
-    </div>
-
-    <div class="row justify-content-md-center">
+      <!-- VALIDATION BUTTON -->
       <div class="actions">
-        <%= f.submit "Update", class:"btn btn-primary" %>
+        <%= f.submit "Modifier", class: "btn btn-primary btn-block" %>
       </div>
-    </div>
 
-  <% end %>
+    <% end %> <!-- form.// -->
 
-    <div class="row justify-content-md-center">
-      <h4>Unhappy?</h3>
-    </div>
+    <!-- DELETE ACCOUNT BUTTON -->
+    <h4 class="card-title mt-5 text-center">Suprimer mon compte</h4>
+    <hr>
+    <!-- FORM -->
+    <%= button_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Etes-vous sûr de vouloir supprimer le compte ?" }, method: :delete, class: "btn btn-danger btn-block" %>
 
-    <div class="row justify-content-md-center">
-      <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger" %>
+
+    <!-- OTHER LINKS -->
+    <div class="actions text-center mt-5">
+      <%= link_to 'Retour', :back, class: "btn btn-secondary" %>
     </div>
     
-</div>
-<%= link_to "Back", :back %>
+  </article>
+</div> <!-- card.// -->
+

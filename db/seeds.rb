@@ -5,25 +5,25 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 require 'faker'
 require 'activerecord-reset-pk-sequence'
 
 ActiveRecord::Base.connection.disable_referential_integrity do
-  User.delete_all
-  User.reset_pk_sequence
+  LineItem.delete_all
+  LineItem.reset_pk_sequence
   Item.delete_all
   Item.reset_pk_sequence
   Cart.delete_all
   Cart.reset_pk_sequence
   Order.delete_all
   Order.reset_pk_sequence
-  LineItem.delete_all
-  LineItem.reset_pk_sequence
+  User.delete_all
+  User.reset_pk_sequence
   puts 'DB cleaned up !'
 end
 
 ########## - USERS - ##########
-
 10.times do
   User.create!(
     email: Faker::Internet.unique.email(domain: 'yopmail.com'),
@@ -36,7 +36,6 @@ puts "#{User.count}/10 users created"
 
 
 ########## - ITEMS - ##########
-
 kitten_pixes = [
   'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-animal-domestique-2558605/',
   'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-arbre-257532/',
@@ -62,7 +61,6 @@ kitten_pixes = [
 
 20.times do |i|
   Item.create!(
-
     title: Faker::Creature::Cat.name,
     description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
     price: Faker::Number.decimal(l_digits: 2),
@@ -72,7 +70,31 @@ kitten_pixes = [
 end
 puts "#{Item.count}/20 items created"
 
+########## - CARTS - ##########
+5.times do |i|
+  Cart.create!(
+    user_id:  i + 1,
+  )
+end
+puts "#{Cart.count}/5 carts created"
 
+######### - ORDERS - ##########
+5.times do |i|
+  Order.create!(
+    user_id:  i + 1,
+  )
+end
+puts "#{Order.count}/5 orders created"
 
-
+######### - LINE ITEMS - ##########
+5.times do |i|
+  3.times do
+    LineItem.create!(
+      cart_id: i + 1,
+      order_id: i + 1,
+      item_id: rand(1..10),
+    )
+  end
+end
+puts "#{LineItem.count}/ 15 line_items created"
 
