@@ -24,11 +24,13 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    @line_item = LineItem.new(line_item_params)
-
+    @item = Item.find(params[:item_id])
+    @cart = Cart.where(user_id: current_user.id)
+    @line_item = LineItem.new(item_id: @item.id, cart_id: @cart.ids.last)
+    
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
+        format.html { redirect_to user_cart_path(id: @cart.ids.last, user_id:current_user.id), notice: 'Line item was successfully created.' }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
@@ -55,8 +57,9 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1.json
   def destroy
     @line_item.destroy
+    @cart = Cart.where(user_id: current_user.id)
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to user_cart_path(id: @cart.ids.last, user_id:current_user.id), notice: 'Line item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
