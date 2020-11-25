@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :carts, only: [:show] do 
       resources :charges, only: [:new, :create]
     end
-    resources :orders, only: [:show]
+    resources :orders, only: [:show, :create, :new]
   end
 
   # ITEMS PAGES
