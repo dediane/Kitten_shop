@@ -17,14 +17,11 @@
       </div> <!-- form-group// -->
 
       <!-- PASSWORD -->
-      <% if @minimum_password_length %>
-        <i class="d-flex justify-content-center">(<%= @minimum_password_length %> characters minimum)</i>
-      <% end %>
       <div class="form-group input-group">
     	  <div class="input-group-prepend">
 		      <span class="input-group-text"> <i class="fas fa-lock"></i> </span>
 		    </div>
-        <%= f.password_field :password, class:"form-control", placeholder: "Mot de passe", autocomplete: "new-password" %>
+        <%= f.password_field :password, class:"form-control", placeholder: "Mot de passe", autocomplete: "password" %>
       </div> <!-- form-group// -->
 
       <!-- REMEMBER ME -->

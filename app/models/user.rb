@@ -13,6 +13,6 @@ class User < ApplicationRecord
     presence: true,
     uniqueness: true,
     format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "wrong email format" }
-  validates :password, length: { in: 6..20 }
+  validates :password, length: { in: 6..20 }, allow_blank: true
 
 end
