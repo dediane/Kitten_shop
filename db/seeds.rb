@@ -5,6 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
+Item.destroy_all
+Cart.destroy_all
+Order.destroy_all
+LineItem.destroy_all
+
 require 'faker'
 require 'activerecord-reset-pk-sequence'
 
@@ -23,7 +29,6 @@ ActiveRecord::Base.connection.disable_referential_integrity do
 end
 
 ########## - USERS - ##########
-
 10.times do
   User.create!(
     email: Faker::Internet.unique.email(domain: 'yopmail.com'),
@@ -36,7 +41,6 @@ puts "#{User.count}/10 users created"
 
 
 ########## - ITEMS - ##########
-
 kitten_pixes = [
   'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-animal-domestique-2558605/',
   'https://www.pexels.com/fr-fr/photo/adorable-animal-animal-de-compagnie-arbre-257532/',
@@ -62,7 +66,6 @@ kitten_pixes = [
 
 20.times do |i|
   Item.create!(
-
     title: Faker::Creature::Cat.name,
     description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
     price: Faker::Number.decimal(l_digits: 2),
@@ -73,7 +76,6 @@ end
 puts "#{Item.count}/20 items created"
 
 ########## - CARTS - ##########
-
 5.times do |i|
   Cart.create!(
     user_id:  i + 1,
@@ -82,7 +84,6 @@ end
 puts "#{Cart.count}/5 carts created"
 
 ######### - ORDERS - ##########
-
 5.times do |i|
   Order.create!(
     user_id:  i + 1,
@@ -91,10 +92,8 @@ end
 puts "#{Order.count}/5 orders created"
 
 ######### - LINE ITEMS - ##########
-
 5.times do |i|
   3.times do
-    puts i
     LineItem.create!(
       cart_id: i + 1,
       order_id: i + 1,
