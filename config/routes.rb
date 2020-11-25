@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "items#index"
 
   # USERS AND PROFILE PAGES
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
   resources :users, only: [:show] do 
     resources :carts, only: [:show] do 
       resources :charges, only: [:new, :create]
