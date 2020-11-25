@@ -16,8 +16,11 @@
       </div>
       <div class="card-body">
         <%= link_to 'Infos', item, class: "btn btn-outline-primary" %>
-        <%= link_to 'Ajouter au panier', line_items_path(item_id: item.id), method: :post, class: "btn btn-outline-success" %>
-        
+        <% if current_user != nil %>
+          <%= link_to 'Ajouter au panier', line_items_path(item_id: item.id), method: :post, class: "btn btn-outline-success" %>
+        <% else %>
+          <%= link_to 'Ajouter au panier', new_user_session_path, method: :get, class: "btn btn-outline-success" %>
+        <% end %>
       </div>
       <div class="fronter">  
           _________________________________
