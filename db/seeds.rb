@@ -5,11 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.destroy_all
-Item.destroy_all
-Cart.destroy_all
-Order.destroy_all
-LineItem.destroy_all
 
 require 'faker'
 require 'activerecord-reset-pk-sequence'
