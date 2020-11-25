@@ -19,7 +19,8 @@
     <tr class="table-light">
       <th scope="row">TOTAL: </th>
       <td><%= @total %>€</td>
-      
+    </tr>
+  </table>
       <!-- Payement avec stripe -->
       <%= form_tag user_cart_charges_path(user_id: current_user.id, cart_id: params[:id]) do %>
         <article>
@@ -32,23 +33,15 @@
             <span>Total: <%= @total %> €</span>
           </label>
         </article>
-
-        <td colspan="2">
+        
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                data-label="Payer par carte bancaire"
+                data-label="Payer"
                 data-description="Payer"
                 data-currency="EUR"
                 data-amount=<%= @totalStripe %>
                 data-locale="fr"></script>       
-        </td>
+        
       <% end %>
-    </tr>
-  </table>
 </div>
-<%
-=begin%>
- <%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %> 
-<%
-=end%>
+
