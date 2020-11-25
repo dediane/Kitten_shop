@@ -9,16 +9,16 @@ require 'faker'
 require 'activerecord-reset-pk-sequence'
 
 ActiveRecord::Base.connection.disable_referential_integrity do
-  User.delete_all
-  User.reset_pk_sequence
+  LineItem.delete_all
+  LineItem.reset_pk_sequence
   Item.delete_all
   Item.reset_pk_sequence
   Cart.delete_all
   Cart.reset_pk_sequence
   Order.delete_all
   Order.reset_pk_sequence
-  LineItem.delete_all
-  LineItem.reset_pk_sequence
+  User.delete_all
+  User.reset_pk_sequence
   puts 'DB cleaned up !'
 end
 
