@@ -22,7 +22,7 @@
     </tr>
   </table>
       <!-- Payement avec stripe -->
-      <%= form_tag user_cart_charges_path(user_id: current_user.id, cart_id: params[:id]) do %>
+      <%= form_tag user_cart_charges_path(user_id: current_user.id, cart_id: params[:id], total: @totalStripe, line_item: @line_item) do %>
         <article>
           <% if flash[:error].present? %>
             <div id="error_explanation">
