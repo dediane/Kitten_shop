@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+
+<!-- Affichage du panier -->
+  <strong>votre panier contient:</strong>
+  <% @line_item.each do |line| %>
+    <h6><%= line.item.title %></h6>
+    <h6><%= line.item.description %></h6>
+    <h6><%= line.item.price %> €</h6>
+    <%= link_to 'Supprimer du panier', line_item_path(line.id), method: :delete, class: "btn btn-outline-danger"%>
+  <% end %>
+</p>
+<p>
+  <strong>votre total est:</strong>
+  <h6><%= @total %> €</h6>
+
+</p>
+
+
+<!-- Payement avec stripe -->
+<%= form_tag user_cart_charges_path(user_id: current_user.id, cart_id: params[:id]) do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Total: <%= @total %> €</span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-label="Payer avec la carte"
+          data-description="Payer"
+          data-currency="EUR"
+          data-amount=<%= @totalStripe %>
+          data-locale="fr"></script>
+        
+<% end %>
+
+<%
+=begin%>
+ <%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %> 
+<%
+=end%>

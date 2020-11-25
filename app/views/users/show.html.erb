@@ -1,0 +1,51 @@
+<div class="card bg-light mx-auto" style="width: 700px;">
+  <article class="card-body mx-auto" style="max-width: 450px;">
+    <h1 class="card-title text-center"><i class="fas fa-user-circle"></i></h1>
+    <h2 class="card-title text-center">Mon profil</h2>
+    <hr class="mb-4">
+
+    <!-- MANAGE PROFIL LINK -->
+    <h4 class="card-title mt-3 text-center">Gérer mon profil</h4>
+    <hr>
+    <div class="actions">
+      <%= button_to 'Modifier/suprimer mon profil', edit_user_registration_path(), method: :get, class: "btn btn-primary btn-block" %>
+    </div>
+
+    <!-- ORDER HISTORY -->
+    <h4 class="card-title mt-5 text-center">Mes commandes</h4>
+    <hr>
+    <% if @user.orders.count == 0 %>
+      <p class="text-center">Bah alors ?!
+      <br>Pas encore de commande passée mon petit chat ?! 🐱</p>
+    <% else %>
+      <% @user.orders.each do |order| %>
+        <h6 class="card-title mt-5 text-center"><i class="fas fa-paw"></i>Commande du <%= order.created_at.strftime("%d/%m/%Y à %k:%M") %></h6>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Produit</th>
+              <th scope="col">Prix unitaire</th>
+              <th scope="col">Quantitée</th>
+              <th scope="col">Total produit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- LINE ITEM LIST -->
+            <% order.line_items.each_with_index do |line_item,i| %>
+              <tr>
+                <th scope="row"><%= i + 1 %></th>
+                <td><%= line_item.item.title %></td>
+                <td><%= line_item.item.price %> €</td>
+                <td>1</td>
+                <td><%= line_item.item.price %> €</td>
+              </tr>
+            <% end %>
+
+          </tbody>
+        </table>
+      <% end %>
+    <% end %>
+
+  </article>
+</div> <!-- card.// -->

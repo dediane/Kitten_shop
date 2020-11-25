@@ -1,0 +1,32 @@
+<div class="card bg-light mx-auto" style="width: 500px;">
+  <article class="card-body mx-auto" style="max-width: 450px;">
+	  <h2 class="card-title mt-3 text-center">Un petit oubli ?</h2>
+    <hr>
+    <!-- FORM -->
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+      <!-- CONFIRMATION MESSAGES, ALERT MESSAGES AND WARNING MESSAGES -->
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <!-- EMAIL -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-at"></i> </span>
+        </div>
+        <%= f.email_field :email, autofocus: true, class:"form-control", placeholder: "Adresse email", autocomplete: "email" %>
+      </div> <!-- form-group// --> 
+
+      <!-- MESSAGE EXPLICATIF -->
+      <i class="d-flex justify-content-center">Envoi un email avec les instructions de réinitialisation.</i>
+      <!-- VALIDATION BUTTON -->
+      <div class="actions">
+        <%= f.submit "Réinitialiser mon mot de passe", class: "btn btn-primary btn-block" %>
+      </div>
+      
+
+      <!-- OTHER LINKS -->
+      <%= render "devise/shared/links" %>
+    <% end %>
+  </article>
+</div> <!-- card.// -->
+
