@@ -16,6 +16,11 @@ Rails.application.routes.draw do
 
   # LINE ITEMS PAGES
   resources :line_items
+
+  # Admin routes
+  namespace :admin do
+    resources :orders, only: :index
+  end
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

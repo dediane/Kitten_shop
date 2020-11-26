@@ -63,7 +63,14 @@
         <li class="nav-item">
           <a class="nav-link btn btn-primary" href="#">À propos</a> 
         </li>
+        <!-- ADMIN TEST -->
+        <% if user_signed_in? %>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary" href="<%= admin_orders_path%>">Admin stuff</a> 
+        </li>
+        <% end %>
       </ul>
+      
 
       <!-- USER CART -->
       <div class="navbar-nav mt-3 mr-4">
