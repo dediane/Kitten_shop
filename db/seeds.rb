@@ -64,7 +64,7 @@ kitten_pixes = [
   Item.create!(
     title: Faker::Creature::Cat.unique.name,
     description: Faker::Lorem.paragraph(sentence_count: 4),
-    price: Faker::Number.positive(from: 1.00, to: 5000.00).round(2),
+    price: Faker::Number.positive(from: 50.00, to: 500.00).round(2),
     image_url: kitten_pixes[i],
   )
 end
