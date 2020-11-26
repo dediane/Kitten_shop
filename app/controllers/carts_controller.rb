@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :dude_where_is_my_cart?, only: [:show]
 
   # GET /carts
   # GET /carts.json
@@ -71,11 +72,19 @@ class CartsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
-      @cart = Cart.find(params[:id])
+      @cart = Cart.find_by(id: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def cart_params
       params.require(:cart).permit(:user_id)
+    end
+
+    def dude_where_is_my_cart?
+      if current_user.nil?
+        redirect_to new_user_session_path, notice: "Tu n'est pas connecté coco!"
+      elsif @cart.nil? || current_user.cart.id !=@cart.id
+        redirect_to root_path, notice: "C'est pas ton panier! T'essayes de voir les chattes de la voisine?"
+      end
     end
 end
