@@ -1,9 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div class="col-8 m-auto text-center m-2">
+  <p class="p-2">
+    <h5>Confirmation de commande:</h5>
+    <%= @user.first_name %>
+  </p>
+  <p> 
+  Merci pour votre commande.<br><br>
+  Nous avons bien reçu votre paiement!
+  </p><hr><br>
+  <strong>
+  Voici la liste des articles que vous avez acheté :
+  </strong><br><br><br>
+  <div class="m-auto">
+  <table class="table p-3 text-left">
+    <thead>
+      <tr class="table-primary">
+        <th scope="col">Produit</th>
+        <th scope="col">Description</th>
+        <th scope="col">Prix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-light">
+      <% @line_item.each do |line| %>
+        <td><%= line.item.title %></td>
+        <td><%= line.item.description %></td>
+        <td><%= line.item.price %>€</td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <hr>
+  <div class="text-right"><br>
+    <strong>Total de la somme débitée:</strong>
+    <h6><%= @total %> €</h6>
+  </div>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @order.user %>
-</p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>

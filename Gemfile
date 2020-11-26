@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'faker'
 gem 'activerecord-reset-pk-sequence'
-
+gem 'pry'
 gem 'table_print'
 gem 'devise'
 gem 'stripe'
@@ -72,3 +72,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'mini_magick'

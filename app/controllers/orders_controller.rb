@@ -10,6 +10,13 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @order = Order.find(params[:id])
+    @user = @order.user
+    @line_item = LineItem.where(order_id: @order.id)
+    @total = 0
+    @line_item.each do |line|
+      @total = @total + line.item.price
+    end
   end
 
   # GET /orders/new
