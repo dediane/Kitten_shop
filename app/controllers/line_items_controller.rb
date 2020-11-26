@@ -10,6 +10,7 @@ class LineItemsController < ApplicationController
   # GET /line_items/1
   # GET /line_items/1.json
   def show
+ 
   end
 
   # GET /line_items/new
@@ -19,6 +20,7 @@ class LineItemsController < ApplicationController
 
   # GET /line_items/1/edit
   def edit
+
   end
 
   # POST /line_items
@@ -52,8 +54,8 @@ class LineItemsController < ApplicationController
   # PATCH/PUT /line_items/1.json
   def update
     @cart = Cart.where(user_id: current_user.id)
-    @line_item.quantity = params[:new_quantity]
-    @line_item.subtotal = params[:new_quantity].to_i * @line_item.item.price
+    @line_item.quantity = params[:quantity]
+    @line_item.subtotal = params[:quantity].to_i * @line_item.item.price
     @line_item.save
     respond_to do |format|
         format.html { redirect_to user_cart_path(id: @cart.ids.last, user_id:current_user.id), notice: 'Votre panier à éte mis à jour' }

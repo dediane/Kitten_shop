@@ -15,15 +15,15 @@
       <th scope="row"><%= line.item.title %></th>
       <td><%= line.item.description %></td>
 
-      <td class="col-10">
-        <form>
-          <div>
-            <input type="number" value=<%= line.quantity %> step="1" min="0" max="100" id="number">
+      <td>
+        <%= form_with(url: line_item_path(line.id), method: "patch", local: true) do |form| %>
+          <div class="field">
+            <%= form.number_field :quantity, in: 1..100, step: 1, value: line.quantity %>
           </div>
-          <div>
-            <%= link_to 'Mettre à jour', line_item_path(line.id, new_quantity: input.value), method: :patch, class: "btn btn-outline-danger"%>
-          </div>
-        </form>
+            <div class="actions">
+              <%= form.submit "Mettre à jour", class: "btn btn-outline-info btn-sm" %>
+            </div>
+        <% end %>
       </td>
 
       <td><%= line.item.price %>€</td>
