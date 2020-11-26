@@ -34,11 +34,11 @@
 <hr>
 
 <h4 class="mt-5 text-center">Photo</h4>
-<%if @item.picture.attached?%>
-  <%= image_tag @item.picture_medium, alt: 'photo de chat', class: "" %>
-<%else%>
+<% if @item.picture.attached? %>
+  <%= image_tag @item.picture, alt: 'photo de chat', class: "" %>
+<% else %>
   <p>aucune photo de chat</p>
-<%end%>
+<% end %>
 
 <%= form_tag item_pictures_path(@item), multipart: true do %>
   <div class="form-group mt-2 d-flex justify-content-center">

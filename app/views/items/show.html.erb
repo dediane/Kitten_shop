@@ -3,7 +3,7 @@
     <h3 class="card-header mb-b"><%= @item.title %></h3>
 
     <%if @item.picture.attached?%>
-      <%= image_tag @item.picture_medium, alt: 'photo de chat', class: "m-3" %>
+      <%= image_tag @item.picture, alt: 'photo de chat', class: "m-3" %>
     <%else%>
       <p>aucune photo de chat</p>
     <%end%>
