@@ -1,20 +1,20 @@
 <div class="center-element-middle text-center">
   <div class="card border-primary mb-3 m-auto" style="width: 30rem;" height="200">
-    <h3 class="card-header"><%= @item.title %></h3>
+    <h3 class="card-header mb-b"><%= @item.title %></h3>
 
-    <img src=<%= @item.image_url %> alt="ImageKitten" width="100%" height="200"> 
+    <img src=<%= @item.image_url %> alt="ImageKitten" height="200" class="m-3"> 
     
     <div class="card-body">
       <p class="card-text"><%= @item.description %></p>
-    </div><br>
+    </div>
     
     <div class="card-body">
       <h5 class="card-title mb-3">Prix : <%= @item.price %> €</h5>
-      <%= link_to "Voir d'autres chatons", items_path,  class: "btn btn-outline-primary mr-3" %>
+      <%= link_to "Voir d'autres chatons", items_path,  class: "btn btn-outline-primary mr-3 mt-3" %>
       <% if current_user != nil %>
-          <%= link_to 'Ajouter au panier', line_items_path(item_id: @item.id), method: :post, class: "btn btn-outline-success" %>
+          <%= link_to 'Ajouter au panier', line_items_path(item_id: @item.id), method: :post, class: "btn btn-outline-success mt-3" %>
         <% else %>
-          <%= link_to 'Ajouter au panier', new_user_session_path, method: :get, class: "btn btn-outline-success" %>
+          <%= link_to 'Ajouter au panier', new_user_session_path, method: :get, class: "btn btn-outline-success mt-3" %>
       <% end %>
     </div>
   </div>
