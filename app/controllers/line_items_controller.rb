@@ -26,16 +26,25 @@ class LineItemsController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     @cart = Cart.where(user_id: current_user.id)
-    @line_item = LineItem.new(item_id: @item.id, cart_id: @cart.ids.last)
-    
-    respond_to do |format|
-      if @line_item.save
-        format.html { redirect_to user_cart_path(id: @cart.ids.last, user_id:current_user.id), notice: 'Line item was successfully created.' }
-        format.json { render :show, status: :created, location: @line_item }
-      else
-        format.html { render :new }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+    @line_item_cart = LineItem.where(cart_id: @cart.ids.last)
+    @found = false
+    @line_item_cart.each do |line|
+      if line.item_id == @item.id
+        line.quantity += 1
+        line.subtotal += @item.price
+        line.save
+        @found = true
       end
+    end
+
+    if @found == false
+      @line_item = LineItem.new(item_id: @item.id, cart_id: @cart.ids.last, quantity: 1, subtotal: @item.price)
+      @line_item.save
+    end
+
+    respond_to do |format|
+      format.html { redirect_to user_cart_path(id: @cart.ids.last, user_id:current_user.id), notice: 'Tu as ajouté un nouveau chat!' }
+      format.json { render :show, status: :created, location: @line_item }
     end
   end
 

@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'faker'
 gem 'activerecord-reset-pk-sequence'
-
+gem 'pry'
 gem 'table_print'
 gem 'devise'
 gem 'stripe'
