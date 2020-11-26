@@ -1,7 +1,7 @@
 Une nouvelle commande!
 
 On a vendu à <%= @user.first_name %> tout ça :
-<% @user.orders.last.each_with_index do |line_item,i| %>
+<% @cart.line_items.each_with_index do |line_item,i| %>
   <% j = 0 %>
   <% j += line_item.subtotal %>
   <%= i + 1 %>
