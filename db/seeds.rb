@@ -60,12 +60,45 @@ kitten_pixes = [
   'https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&h=350', 
 ]
 
+kitten_images = [
+  'kitten1.jpg',
+  'kitten2.jpg',
+  'kitten3.jpg',
+  'kitten4.jpg',
+  'kitten5.jpg',
+  'kitten6.jpg',
+  'kitten7.jpg',
+  'kitten8.jpg',
+  'kitten9.jpg',
+  'kitten10.jpg',
+  'kitten11.jpg',
+  'kitten12.jpg',
+  'kitten13.jpg',
+  'kitten14.jpg',
+  'kitten15.jpg',
+  'kitten16.jpg',
+  'kitten17.jpg',
+  'kitten18.jpg',
+  'kitten19.jpg',
+  'kitten20.jpg',
+  'kitten21.jpg',
+]
+
 20.times do |i|
-  Item.create!(
+  curent_item = Item.create!(
     title: Faker::Creature::Cat.unique.name,
     description: Faker::Lorem.paragraph(sentence_count: 4),
     price: Faker::Number.positive(from: 50.00, to: 500.00).round(2),
     image_url: kitten_pixes[i],
+  )
+
+  curent_item.picture.attach(
+    io: File.open(
+      Rails.root.join(
+        'app', 'assets', 'images', kitten_images[i]
+      )
+    ), filename: kitten_images[i],
+    content_type: 'image/jpg'
   )
 end
 puts "#{Item.count}/20 items created"
