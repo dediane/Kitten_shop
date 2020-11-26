@@ -1,25 +1,12 @@
 
 <div class="card">
-  <h1 class="m-3">Editing Item</h1>
+  <h1 class="m-3">Editer la photo de chat</h1>
   <div class="m-auto, col-6 mt-3">
     <%= render 'form', item: @item%>
   </div>
 
-  <br><hr><br>
-  <%if @item.picture.attached?%>
-    <%= image_tag @item.picture_big, alt: 'picture' %>
-  <%else%>
-    <p>=== Il n'y a pas encore de picture lié à cet item ===</p>
-  <%end%>
-  <h3>Changer d'image ?</h3>
-  <%= form_tag item_pictures_path(@item), multipart: true do %>
-    <%= file_field_tag :picture %>
-    <%= submit_tag "mettre à jour", class:"btn btn-danger btn-sm mb-3 mt-3 mr-4"%>
-
-  <% end %>
-  <br><hr><br>
   <div class="m-auto text-center">
-    <%= link_to 'Show', @item, class:"btn btn-secondary btn-sm"%> |
-    <%= link_to 'Back', items_path, class:"btn btn-secondary btn-sm" %>
+    <%= link_to 'Voir', @item, class:"btn btn-secondary btn-sm"%> |
+    <%= link_to 'Retour', items_path, class:"btn btn-secondary btn-sm" %>
   </div>
 </div>

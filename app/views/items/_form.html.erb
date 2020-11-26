@@ -13,26 +13,36 @@
 
   <div>
     <div class="form group mb-2">
-      <%= form.label :title%>
+      <%= form.label :title, 'Titre' %>
       <%= form.text_field :title,  class:"form-control" %>
     </div>
 
     <div class="form group mb-2">
-      <%= form.label :description %>
+      <%= form.label :description, 'Description' %>
       <%= form.text_area :description, class:"form-control" %>
     </div>
 
     <div class="form-group mb-2">
-      <%= form.label :price %>
+      <%= form.label :price, 'Prix' %>
       <%= form.text_field :price, class:"form-control" %>
-    </div>
-
-    <div class="form-group mb-2">
-      <%= form.label :image_url , class:""%>
-      <%= form.text_field :image_url, class:"form-control" %>
     </div>
 
     <div class="actions m-3 text-center">
       <%= form.submit class:"btn btn-success"%>
+  </div>
+<% end %>
+<hr>
+
+<h4 class="mt-5 text-center">Photo</h4>
+<%if @item.picture.attached?%>
+  <%= image_tag @item.picture_medium, alt: 'photo de chat', class: "" %>
+<%else%>
+  <p>aucune photo de chat</p>
+<%end%>
+
+<%= form_tag item_pictures_path(@item), multipart: true do %>
+  <div class="form-group mt-2 d-flex justify-content-center">
+    <%= file_field_tag :picture %>
+    <%= submit_tag "Modifier l'image", class:"btn btn-primary btn-sm"%>
   </div>
 <% end %>
