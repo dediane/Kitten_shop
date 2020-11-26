@@ -15,4 +15,11 @@ class User < ApplicationRecord
     format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "wrong email format" }
   validates :password, length: { in: 6..20 }, allow_blank: true
 
+  
+  after_create :welcome_send
+
+  def welcome_send
+    UserMailer.welcome_email(self).deliver_now
+  end
+
 end
