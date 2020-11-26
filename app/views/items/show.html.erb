@@ -5,7 +5,7 @@
 <div class="card mb-3" style="width: 30rem;" height="200">
   <h3 class="card-header"><%= @item.title %></h3>
 
-  <img src=<%= @item.image_url %> alt="ImageKitten" width="100%" height="200"> 
+ 
   
   <div class="card-body">
     <h6 class="card-text"><%= @item.description %></h6>
@@ -23,3 +23,14 @@
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>
 </div>
+
+<h3>Avatar actuel</h3>
+<%if @item.avatar.attached?%>
+  <%= image_tag @item.avatar, alt: 'avatar' %>
+<%else%>
+  <p>=== Il n'y a pas encore d'avatar lié à cet utilisateur ===</p>
+<%end%>
+<%= form_tag do %>
+  <%= file_field_tag :avatar %>
+  <%= submit_tag "uploader l'avatar" %>
+<% end %>

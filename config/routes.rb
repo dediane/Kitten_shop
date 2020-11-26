@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   end
 
   # ITEMS PAGES
-  resources :items
+  resources :items do
+    resources :avatars, only: [:create]
+  end
 
   # LINE ITEMS PAGES
   resources :line_items
