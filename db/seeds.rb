@@ -137,7 +137,7 @@ puts "#{LineItem.count}/ 15 line_items created"
 
 ######### - Admin user - #########
 User.create!(
-  email: "kitty@admin.com",
+  email: "kitten.admin@yopmail.com",
   password: "coucou",
   is_admin: true
 )
