@@ -1,5 +1,5 @@
 
-<div class ="row col">
+ <div class ="row col">
   <% @items.each do |item| %>
     <div class="card mb-3 m-auto" style="width:18rem;">
       <h3 class="card-header"><%= item.title %></h3>
@@ -22,6 +22,9 @@
           <%= link_to 'Ajouter au panier', line_items_path(item_id: item.id), method: :post, class: "btn btn-outline-success" %>
         <% else %>
           <%= link_to 'Ajouter au panier', new_user_session_path, method: :get, class: "btn btn-outline-success" %>
+        <% end %>
+        <% if is_current_user_admin? %>
+          <%= link_to 'Editer', edit_item_path(id: item.id), method: :get, class: "btn btn-outline-secondary" %>
         <% end %>
       </div>
       <div class="fronter">  
