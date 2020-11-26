@@ -2,5 +2,18 @@
 
 <%= render 'form', item: @item %>
 
+
+<%if @item.picture.attached?%>
+  <%= image_tag @item.picture_big, alt: 'picture' %>
+<%else%>
+  <p>=== Il n'y a pas encore de picture lié à cet item ===</p>
+<%end%>
+
+<h3>Changer d'image ?</h3>
+<%= form_tag item_pictures_path(@item), multipart: true do %>
+  <%= file_field_tag :picture %>
+  <%= submit_tag "mettre à jour" %>
+<% end %>
+
 <%= link_to 'Show', @item %> |
 <%= link_to 'Back', items_path %>
