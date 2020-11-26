@@ -14,9 +14,11 @@
   <table class="table p-3 text-left">
     <thead>
       <tr class="table-primary">
-        <th scope="col">Produit</th>
+        <th scope="col">Article</th>
         <th scope="col">Description</th>
+        <th scope="col">Examplaire</th>
         <th scope="col">Prix</th>
+        <th scope="col">Sous-total</th>
       </tr>
     </thead>
     <tbody>
@@ -24,7 +26,9 @@
       <% @line_item.each do |line| %>
         <td><%= line.item.title %></td>
         <td><%= line.item.description %></td>
+        <td>x<%= line.quantity %></td>
         <td><%= line.item.price %>€</td>
+        <td><%= line.subtotal %>€</td>
       </tr>
     <% end %>
     </tbody>
