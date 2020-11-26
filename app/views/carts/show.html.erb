@@ -10,7 +10,7 @@
       <td>Sous total</td>
       <td>Supprimer</td>
     </tr>
-    <% @line_item.each do |line| %>
+    <% @line_item.sort.each do |line| %>
     <tr class="table">
       <th scope="row"><%= line.item.title %></th>
       <td><%= line.item.description %></td>

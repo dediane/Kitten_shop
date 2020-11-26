@@ -1,15 +1,7 @@
-class UserMailer < ApplicationMailer
+class AdminMailer < ApplicationMailer
   default from: 'kitenshop@yopmail.fr'
- 
-  def welcome_email(user)
-    @user = user 
-    @urlHomePage  = root_url
-    @urlLogin  = new_user_session_url
 
-    mail(to: @user.email, subject: 'Bienvenue au Kitten Shop 🐱 !') 
-  end
-
-  def order_user_confirm(order)
+  def order_admin_confirm(order)
     @user = order.user 
     @order = order
     @cart = order.user.cart

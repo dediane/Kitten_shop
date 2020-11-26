@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- ICON LIBRARY -->
+    <script src="https://kit.fontawesome.com/dc9a3c0907.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1>Confirmation de commande chez Kitten Shop 🐱 !</h1>
+    <hr>
+    <p>
+      Salut à toi mon petit chat,<br>
+    </p>
+    <p>
+      Ta commande a bien été validé et ton paiement a été accepté.<br>
+      Toute l'équipe de Kitten Shop te remercie!<br><br>
+      
+      <h6 class="card-title mt-5"><i class="fas fa-paw"></i>Commande du <%= @order.created_at.strftime("%d/%m/%Y à %k:%M") %></h6>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Produit</th>
+            <th scope="col">Prix unitaire</th>
+            <th scope="col">Quantitée</th>
+            <th scope="col">Sous total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- LINE ITEM LIST -->
+          <% j = 0 %>
+          <% @cart.line_items.each_with_index do |line_item,i| %>
+            <tr>
+              <% j += line_item.subtotal %>
+              <th scope="row"><%= i + 1 %></th>
+              <td><%= line_item.item.title %></td>
+              <td><%= line_item.item.price %> €</td>
+              <td><%= line_item.quantity %> </td>
+              <td><%= line_item.subtotal %> €</td>
+            </tr>
+          <% end %>
+        <h6 class="card-title mt-5 text-center">Total de la commande: <%= j %> € 😘</h6>
+        </tbody>
+      </table><br><br>
+
+
+      Tu retrouveras les informations relatives à ta commande en te connectant sur ton espace client.<br>
+      Pour accéder à ton espace client, connecte-toi via : <%= link_to "Me connecter", @urlLogin %> .
+    </p>
+    <br>
+    <p>
+      À très vite au pays des félins 🐾 ! 
+      <br><br>
+      L'équipe de Kitten Shop
+    </p>
+  </body>
+</html>
