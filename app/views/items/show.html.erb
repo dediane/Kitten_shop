@@ -1,25 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="center-element-middle text-center">
+  <div class="card border-primary mb-3 m-auto" style="width: 30rem;" height="200">
+    <h3 class="card-header"><%= @item.title %></h3>
 
-
-<div class="center-element-middle">
-<div class="card mb-3" style="width: 30rem;" height="200">
-  <h3 class="card-header"><%= @item.title %></h3>
-
-  <img src=<%= @item.image_url %> alt="ImageKitten" width="100%" height="200"> 
-  
-  <div class="card-body">
-    <h6 class="card-text"><%= @item.description %></h6>
+    <img src=<%= @item.image_url %> alt="ImageKitten" width="100%" height="200"> 
+    
+    <div class="card-body">
+      <p class="card-text"><%= @item.description %></p>
+    </div><br>
+    
+    <div class="card-body">
+      <h5 class="card-title mb-3">Prix : <%= @item.price %> €</h5>
+      <%= link_to "Voir d'autres chatons", items_path,  class: "btn btn-outline-primary mr-3" %>
+      <% if current_user != nil %>
+          <%= link_to 'Ajouter au panier', line_items_path(item_id: @item.id), method: :post, class: "btn btn-outline-success" %>
+        <% else %>
+          <%= link_to 'Ajouter au panier', new_user_session_path, method: :get, class: "btn btn-outline-success" %>
+      <% end %>
+    </div>
   </div>
-  
-  <ul class="list-group list-group-flush">
-  </ul>
-  <div class="card-body">
-    <h4 class="card-title">Prix : <%= @item.price %> €</h4>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-  
 </div>
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
-</div>
+  
