@@ -8,7 +8,7 @@ It's a project for The Hacking Project coding bootcamp.
 
 You can find our application on **Heroku**:
 
-**Production version** -> [HERE](https://kitten-dev.herokuapp.com/)
+**Production version** -> [HERE](https://kitten-prod.herokuapp.com/)
 
 ## How to use the app?
 
