@@ -92,14 +92,14 @@ kitten_images = [
     image_url: kitten_pixes[i],
   )
 
-  curent_item.picture.attach(
-    io: File.open(
-      Rails.root.join(
-        'app', 'assets', 'images', kitten_images[i]
-      )
-    ), filename: kitten_images[i],
-    content_type: 'image/jpg'
-  )
+  # curent_item.picture.attach(
+  #   io: File.open(
+  #     Rails.root.join(
+  #       'app', 'assets', 'images', kitten_images[i]
+  #     )
+  #   ), filename: kitten_images[i],
+  #   content_type: 'image/jpg'
+  # )
 end
 puts "#{Item.count}/20 items created"
 
@@ -137,7 +137,7 @@ puts "#{LineItem.count}/ 15 line_items created"
 
 ######### - Admin user - #########
 User.create!(
-  email: "kitty@admin.com",
+  email: "kitten.admin@yopmail.com",
   password: "coucou",
   is_admin: true
 )

@@ -5,8 +5,8 @@
     <tr class="table-primary">
       <th scope="row">Article</th>
       <td>Description</td>
-      <td>Prix</td>
       <td>Exemplaire</td>
+      <td>Prix</td>
       <td>Sous total</td>
       <td>Supprimer</td>
     </tr>
@@ -14,12 +14,30 @@
     <tr class="table">
       <th scope="row"><%= line.item.title %></th>
       <td><%= line.item.description %></td>
+
+      <td>
+        <%= form_with(url: line_item_path(line.id), method: "patch", local: true) do |form| %>
+          <div class="field">
+            <%= form.number_field :quantity, in: 1..100, step: 1, value: line.quantity %>
+          </div>
+            <div class="actions">
+              <%= form.submit "Mettre à jour", class: "btn btn-outline-info btn-sm" %>
+            </div>
+        <% end %>
+      </td>
+
       <td><%= line.item.price %>€</td>
-      <td><%= line.quantity %>x</td>
       <td><%= line.subtotal %>€</td>
       <td><%= link_to 'Supprimer', line_item_path(line.id), method: :delete, class: "btn btn-outline-danger"%></td>
     </tr>
     <% end %>
+    <tr class="table">
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%= link_to "Poursuivre votre commande", items_path,  class: "btn btn-outline-primary" %></td>
     <tr class="table-light">
       <th scope="row">TOTAL: </th>
       <td><%= @total %>€</td>

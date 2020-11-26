@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     @line_item = LineItem.where(order_id: @order.id)
     @total = 0
     @line_item.each do |line|
-      @total = @total + line.item.price
+      @total = @total + line.subtotal
     end
   end
 

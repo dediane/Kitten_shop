@@ -1,6 +1,6 @@
-<header>
+<header class="sticky-top">
   <!-- BEGINNING NAVBAR -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top mb-3">
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-3">
     
     <!-- LOGO -->
     <a class="navbar-brand btn btn-primary" href="<%= root_path %>">
@@ -61,15 +61,18 @@
         
         <!-- ABOUT -->
         <li class="nav-item">
-          <a class="nav-link btn btn-primary" href="#">À propos</a> 
+          <a class="nav-link btn btn-primary" href="<%= teams_path %>">La team</a> 
         </li>
         <!-- ADMIN TEST -->
-        <% if user_signed_in? %>
+         <% if is_current_user_admin? %>
         <li class="nav-item">
           <a class="nav-link btn btn-primary" href="<%= admin_orders_path%>">Admin stuff</a> 
         </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary" href="<%= new_item_path%>">Créer un chaton</a> 
+        </li>
         <% end %>
-      </ul>
+      </ul> 
       
 
       <!-- USER CART -->
