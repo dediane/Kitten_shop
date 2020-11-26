@@ -13,9 +13,10 @@ class CartsController < ApplicationController
   def show
     @cart = Cart.find(params[:id])
     @line_item = LineItem.where(cart_id: params[:id])
+
     @total = 0
     @line_item.each do |line|
-      @total = @total + line.item.price
+      @total += line.subtotal
     end
     @totalStripe = @total * 100
   end

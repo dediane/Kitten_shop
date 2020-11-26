@@ -6,6 +6,8 @@
       <th scope="row">Article</th>
       <td>Description</td>
       <td>Prix</td>
+      <td>Exemplaire</td>
+      <td>Sous total</td>
       <td>Supprimer</td>
     </tr>
     <% @line_item.each do |line| %>
@@ -13,6 +15,8 @@
       <th scope="row"><%= line.item.title %></th>
       <td><%= line.item.description %></td>
       <td><%= line.item.price %>€</td>
+      <td><%= line.quantity %>x</td>
+      <td><%= line.subtotal %>€</td>
       <td><%= link_to 'Supprimer', line_item_path(line.id), method: :delete, class: "btn btn-outline-danger"%></td>
     </tr>
     <% end %>
