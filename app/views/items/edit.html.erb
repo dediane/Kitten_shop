@@ -7,7 +7,7 @@
 
   <br><hr><br>
   <%if @item.picture.attached?%>
-    <%= image_tag @item.picture_big, alt: 'picture' %>
+    <%= image_tag @item.picture, alt: 'picture' %>
   <%else%>
     <p>=== Il n'y a pas encore de picture lié à cet item ===</p>
   <%end%>
