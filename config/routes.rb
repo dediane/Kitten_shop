@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   end
 
   # ITEMS PAGES
-  resources :items, path: "chats" 
+  resources :items, path: "chats" do
+    resources :pictures, only: [:create]
+  end
 
   # LINE ITEMS PAGES
   resources :line_items

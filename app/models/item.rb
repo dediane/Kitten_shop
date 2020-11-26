@@ -2,6 +2,8 @@ class Item < ApplicationRecord
   has_many :line_items
   has_many :carts, through: :line_items
   has_many :orders, through: :line_items
+  has_one_attached :picture
+  after_commit :add_default_picture, on: %i[create update]
 
   validates :title,
     presence: true,
@@ -13,4 +15,31 @@ class Item < ApplicationRecord
     presence: true,
     numericality: {greater_than: 0, message: "Price must be positive"}
 
+
+  def picture_thumbnail
+    picture.variant(resize: "65x43!").processed if picture.attached?
+  end
+
+  def picture_medium
+    picture.variant(resize: "288x200!").processed if picture.attached?
+  end
+
+  def picture_big
+    picture.variant(resize: "525x350!").processed if picture.attached?
+  end
+
+  private
+
+  def add_default_picture
+    unless picture.attached?
+      picture.attach(
+        io: File.open(
+          Rails.root.join(
+            'app', 'assets', 'images', 'default_kitten.jpg' 
+          )
+        ), filename: 'default_kitten.jpg',
+        content_type: 'image/jpg'
+      )
+    end
+  end
 end
