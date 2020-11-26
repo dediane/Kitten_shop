@@ -24,40 +24,7 @@
         </li>
 
 
-        <!-- TEST DROPDOWN -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            [T]
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <!-- CHARGES -->
-            <a class="dropdown-item" href="">charges#new (todo)</a>
-            <!-- CARTS -->
-            <a class="dropdown-item" href="#">carts#show (todo)</a>
-            <!-- ORDERS -->
-            <a class="dropdown-item" href="#">orders#show (todo)</a>
-            <!-- ITEMS -->
-            <a class="dropdown-item" href="<%= items_path %>">items#index</a>
-            <a class="dropdown-item" href="<%= new_item_path %>">items#new</a>
-            <a class="dropdown-item" href="<%= edit_item_path(1) %>">items#edit n°1</a>
-            <a class="dropdown-item" href="<%= item_path(1) %>">items#show n°1</a>
-            <!-- USERS -->
-            <a class="dropdown-item" href="<%= new_user_session_path %>">sessions#new</a>
-            <% if user_signed_in? %>
-              <a class="dropdown-item" href="<%= destroy_user_session_path(session[:user_id]) %>" data-confirm="Es-tu sûr de vouloir te déconnecter ?" data-method="DELETE">sessions#destroy</a>
-            <% end %>
-            <a class="dropdown-item" href="<%= new_user_password_path %>">passwords#new</a>
-            <a class="dropdown-item" href="<%= edit_user_password_path %>">passwords#edit</a>
-            <% if user_signed_in? %>
-              <a class="dropdown-item" href="<%= user_registration_path %>" data-confirm="Es-tu sûr de vouloir supprimer le compte ?" data-method="DELETE">registrations#destroy</a>
-            <% end %>
-            <a class="dropdown-item" href="<%= new_user_registration_path %>">registrations#new</a>
-            <a class="dropdown-item" href="<%= edit_user_registration_path %>">registrations#edit</a>
-            <% if user_signed_in? %>
-              <a a class="dropdown-item" href="<%= user_path(current_user.id) %>">users#show</a>
-            <% end %>
-          </div>
-        </li>
+       
         
         <!-- ABOUT -->
         <li class="nav-item">
@@ -74,8 +41,8 @@
         <% end %>
       </ul> 
       
+        <!-- USER CART -->
 
-      <!-- USER CART -->
       <div class="navbar-nav mt-3 mr-4">
         <% if user_signed_in? %>
           <% if Cart.where(user_id: current_user.id).last %>
