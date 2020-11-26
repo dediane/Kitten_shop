@@ -1,0 +1,15 @@
+Une nouvelle commande!
+
+On a vendu à <%= @user.first_name %> tout ça :
+<% @user.orders.last.each_with_index do |line_item,i| %>
+  <% j = 0 %>
+  <% j += line_item.subtotal %>
+  <%= i + 1 %>
+  <%= line_item.item.title %>
+  <%= line_item.item.price %> €
+  <%= line_item.quantity %>
+  <%= line_item.subtotal %> €
+Total de la commande: <%= j %> €
+<% end %>
+Quelle affaire 🐾 ! 
+ 
