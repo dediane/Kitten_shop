@@ -20,6 +20,13 @@
       <td><%= link_to 'Supprimer', line_item_path(line.id), method: :delete, class: "btn btn-outline-danger"%></td>
     </tr>
     <% end %>
+    <tr class="table">
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%= link_to "Poursuivre votre commande", items_path,  class: "btn btn-outline-primary" %></td>
     <tr class="table-light">
       <th scope="row">TOTAL: </th>
       <td><%= @total %>€</td>

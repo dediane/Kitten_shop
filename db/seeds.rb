@@ -122,12 +122,23 @@ puts "#{Order.count}/5 orders created"
 ######### - LINE ITEMS - ##########
 5.times do |i|
   3.times do
+    rand_number = rand(1..5)
+    rand_item = rand(1..10)
     LineItem.create!(
       cart_id: i + 1,
       order_id: i + 1,
-      item_id: rand(1..10),
+      item_id: rand_item,
+      quantity: rand_number,
+      subtotal: Item.find_by(id: rand_item).price * rand_number
     )
   end
 end
 puts "#{LineItem.count}/ 15 line_items created"
 
+######### - Admin user - #########
+User.create!(
+  email: "kitty@admin.com",
+  password: "coucou",
+  is_admin: true
+)
+puts "1 admin created"
