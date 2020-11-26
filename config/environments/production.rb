@@ -91,4 +91,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # CONFIG MAILER
+  config.action_mailer.perform_deliveries = true #true -> ACTIVATE SEND EMAIL
+  config.action_mailer.default_url_options = { host: 'https://kitten-prod.herokuapp.com'}
 end
