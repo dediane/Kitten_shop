@@ -51,14 +51,13 @@ class LineItemsController < ApplicationController
   # PATCH/PUT /line_items/1
   # PATCH/PUT /line_items/1.json
   def update
+    @cart = Cart.where(user_id: current_user.id)
+    @line_item.quantity = params[:new_quantity]
+    @line_item.subtotal = params[:new_quantity].to_i * @line_item.item.price
+    @line_item.save
     respond_to do |format|
-      if @line_item.update(line_item_params)
-        format.html { redirect_to @line_item, notice: 'Line item was successfully updated.' }
+        format.html { redirect_to user_cart_path(id: @cart.ids.last, user_id:current_user.id), notice: 'Votre panier à éte mis à jour' }
         format.json { render :show, status: :ok, location: @line_item }
-      else
-        format.html { render :edit }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
-      end
     end
   end
 
@@ -80,7 +79,7 @@ class LineItemsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def line_item_params
-      params.require(:line_item).permit(:cart_id, :order_id)
-    end
+    # def line_item_params
+    #   params.require(:line_item).permit(:cart_id, :order_id)
+    # end
 end

@@ -5,8 +5,8 @@
     <tr class="table-primary">
       <th scope="row">Article</th>
       <td>Description</td>
-      <td>Prix</td>
       <td>Exemplaire</td>
+      <td>Prix</td>
       <td>Sous total</td>
       <td>Supprimer</td>
     </tr>
@@ -14,8 +14,19 @@
     <tr class="table">
       <th scope="row"><%= line.item.title %></th>
       <td><%= line.item.description %></td>
+
+      <td class="col-10">
+        <form>
+          <div>
+            <input type="number" value=<%= line.quantity %> step="1" min="0" max="100" id="number">
+          </div>
+          <div>
+            <%= link_to 'Mettre à jour', line_item_path(line.id, new_quantity: input.value), method: :patch, class: "btn btn-outline-danger"%>
+          </div>
+        </form>
+      </td>
+
       <td><%= line.item.price %>€</td>
-      <td><%= line.quantity %>x</td>
       <td><%= line.subtotal %>€</td>
       <td><%= link_to 'Supprimer', line_item_path(line.id), method: :delete, class: "btn btn-outline-danger"%></td>
     </tr>
